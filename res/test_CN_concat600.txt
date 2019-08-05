@@ -1,0 +1,40 @@
+Fine 1
+Fine 2
+Fine 3
+
+Config: ['--epochs', '20', '--batch_size', '64', '--corpus', 'scitail', '--encoder_type', 'HBMP', '--activation', 'leakyrelu', '--optimizer', 'adam', '--word_embedding', 'glove.6B.300d', '--embed_dim', '600', '--fc_dim', '600', '--hidden_dim', '600', '--layers', '1', '--dropout', '0.1', '--learning_rate', '0.0005', '--lr_patience', '1', '--lr_decay', '0.99', '--lr_reduction_factor', '0.2', '--weight_decay', '0', '--early_stopping_patience', '3', '--save_path', 'results', '--seed', '1234']
+
+Namespace(activation='leakyrelu', batch_size=64, cells=2, corpus='scitail', dropout=0.1, early_stopping_patience=3, embed_dim=600, embed_size=22693, encoder_type='HBMP', epochs=20, fc_dim=600, gpu=0, hidden_dim=600, layers=1, learning_rate=0.0005, lower=True, lr_decay=0.99, lr_patience=1, lr_reduction_factor=0.2, optimizer='adam', out_dim=2, resume_snapshot='', save_path='results', seed=1234, weight_decay=0.0, word_embedding='glove.6B.300d')
+Model:
+
+NLIModel(
+  (sentence_embedding): SentenceEmbedding(
+    (word_embedding): Embedding(22693, 600)
+    (encoder): HBMP(
+      (max_pool): AdaptiveMaxPool1d(output_size=1)
+      (rnn1): LSTM(600, 600, dropout=0.1, bidirectional=True)
+      (rnn2): LSTM(600, 600, dropout=0.1, bidirectional=True)
+      (rnn3): LSTM(600, 600, dropout=0.1, bidirectional=True)
+    )
+  )
+  (classifier): FCClassifier(
+    (activation): LeakyReLU(0.01)
+    (mlp): Sequential(
+      (0): Dropout(p=0.1)
+      (1): Linear(in_features=14400, out_features=600, bias=True)
+      (2): LeakyReLU(0.01)
+      (3): Dropout(p=0.1)
+      (4): Linear(in_features=600, out_features=600, bias=True)
+      (5): LeakyReLU(0.01)
+      (6): Linear(in_features=600, out_features=2, bias=True)
+    )
+  )
+)
+
+
+Parameters: 33119102
+
+Training started...
+
+
+Epoch: 01/20 (Learning rate: 0.0005)
